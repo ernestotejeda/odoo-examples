@@ -1,0 +1,22 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.15.0
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+ci: GitHub
+generate_requirements_txt: true
+github_check_license: true
+github_ci_extra_env: {}
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: true
+github_enforce_dev_status_compatibility: true
+include_wkhtmltopdf: false
+odoo_test_flavor: Both
+odoo_version: 15.0
+org_name: Ernesto Tejeda
+org_slug: ernestotejeda
+rebel_module_groups: []
+repo_description: Odoo examples
+repo_name: Odoo examples
+repo_slug: odoo-examples
+repo_website: https://github.com/ernestotejeda/odoo-examples
+
