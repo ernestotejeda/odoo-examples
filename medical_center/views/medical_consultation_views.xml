@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="medical_consultation_search_view" model="ir.ui.view">
+        <field name="name">medical.consultation.search</field>
+        <field name="model">medical.consultation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="date_consultation" />
+            </search>
+        </field>
+    </record>
+
+    <record id="medical_consultation_view_tree" model="ir.ui.view">
+        <field name="name">medical.consultation.tree</field>
+        <field name="model">medical.consultation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="date_consultation" />
+                <field name="medication_administer_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="medical_consultation_view_form" model="ir.ui.view">
+        <field name="name">medical.consultation.form</field>
+        <field name="model">medical.consultation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="partner_id"
+                                widget="res_partner_many2one"
+                                context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                options='{"always_reload": True}'
+                            />
+                        </group>
+                        <group>
+                            <field name="date_consultation" />
+                            <field name="company_id" />
+                            <field name="symptoms" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Diagnosis">
+                            <field name="diagnosis" paceholder="Writhe the diagnosis" />
+                        </page>
+                        <page string="Medication Administer">
+                            <field
+                                name="medication_administer_ids"
+                                widget="section_and_note_one2many"
+                            >
+                                <tree editable="bottom">
+                                    <control>
+                                        <create
+                                            name="add_product_control"
+                                            string="Add a medication"
+                                        />
+                                        <create
+                                            name="add_section_control"
+                                            string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"
+                                        />
+                                        <create
+                                            name="add_note_control"
+                                            string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"
+                                        />
+                                    </control>
+                                    <field name="display_type" invisible="1" />
+                                    <field name="sequence" widget="handle" />
+                                    <field
+                                        name="product_id"
+                                        attrs="{'required': [('display_type', '=', False)]}"
+                                    />
+                                    <field
+                                        name="name"
+                                        widget="section_and_note_text"
+                                        optional="show"
+                                    />
+                                    <field
+                                        name="product_qty"
+                                        attrs="{'required': [('display_type', '=', False)]}"
+                                    />
+                                    <field
+                                        name="product_uom_category_id"
+                                        invisible="1"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        groups="uom.group_uom"
+                                    />
+                                    <field name="route" />
+                                </tree>
+                                <form>
+                                    <field name="display_type" invisible="1" />
+                                    <group>
+                                        <group>
+                                            <field name="product_id" />
+                                            <field name="route" />
+                                        </group>
+                                        <group>
+                                            <field name="product_qty" />
+                                            <field
+                                                name="product_uom_category_id"
+                                                invisible="1"
+                                            />
+                                            <field
+                                                name="product_uom_id"
+                                                groups="uom.group_uom"
+                                                class="oe_no_button"
+                                            />
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="medical_consultation_act_window" model="ir.actions.act_window">
+        <field name="name">Medical Consultation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.consultation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Medical Consultation.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        name="Medical Consultation"
+        id="medical_consultation_menu"
+        parent="consultation_menu"
+        action="medical_consultation_act_window"
+    />
+</odoo>

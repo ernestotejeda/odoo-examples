@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+medical_consultation_user,medical_consultation_user,model_medical_consultation,base.group_user,1,1,1,1
+medication_administer_user,medication_administer_user,model_medication_administer,base.group_user,1,1,1,1
+consultation_report_user,medical_consultation_report_user,model_medical_consultation_report,base.group_user,1,1,1,1
