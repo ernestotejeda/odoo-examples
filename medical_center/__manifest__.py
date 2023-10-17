@@ -9,9 +9,15 @@
     "author": "Ernesto Tejeda",
     "website": "https://github.com/ernestotejeda/odoo-examples",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": [
+        "sale_stock",
+        "purchase",
+        "project",
+        "hr",
+    ],
     "data": [
         "views/menus.xml",
-        "views/res_partner.xml",
+        "views/res_partner_views.xml",
+        "views/product_views.xml",
     ],
 }
